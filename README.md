@@ -7,14 +7,14 @@ For using in Maven project please follow [this link](https://maven.radio-most.ru
 <repository>
   <id>radiomost-maven-repos</id>
   <name>RadioMost Maven Repository</name>
-  <url>https://maven.radio-most.ru/{repository}</url>
+  <url>https://maven.radio-most.ru/releases</url>
 </repository>
 ```
 
 ```xml
 <dependency>
   <groupId>com.koveloper</groupId>
-  <artifactId>thread.utils</artifactId>
+  <artifactId>thread.utils</artifactId>s
   <version>1.0</version>
 </dependency>
 ```
