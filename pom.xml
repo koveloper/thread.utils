@@ -40,6 +40,77 @@
                 <configuration>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.ferstl</groupId>
+                <artifactId>depgraph-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-dependency-graph</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>graph</goal>
+                        </goals>
+                        <configuration>
+                            <showVersions>true</showVersions>
+                            <showGroupIds>true</showGroupIds>
+                            <showDuplicates>true</showDuplicates>
+                            <showConflicts>true</showConflicts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-dependency-graph-image</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <async>true</async>
+                            <asyncDestroyOnShutdown>false</asyncDestroyOnShutdown>
+                            <executable>C:\Program Files\Graphviz\bin\dot.exe</executable>
+                            <arguments>
+                                <argument>-Tjpeg</argument>
+                                <argument>${basedir}/target/dependency-graph.dot</argument>
+                                <argument>-o</argument>
+                                <argument>${basedir}/target/dependency-graph.jpeg</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-dots-file</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>target</directory>
+                                    <includes>
+                                        <include>dependency-graph.dot</include>
+                                        <include>dependency-graph.jpeg</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <distributionManagement>

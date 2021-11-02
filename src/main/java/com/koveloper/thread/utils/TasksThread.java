@@ -55,13 +55,13 @@ public class TasksThread extends Thread {
      * @param iface callback to user interface instance
      * @return TaskThread this instance
      */
-    public TasksThread setIface(TasksThreadInterface iface) {
+    public final TasksThread setIface(TasksThreadInterface iface) {
         this.iface = iface;
         return this;
     }
 
     @Override
-    public void run() {
+    public final void run() {
         setPriority(priority);
         setName(str);
         if(iface != null) {
@@ -101,7 +101,7 @@ public class TasksThread extends Thread {
      * Method used for adding tasks to threads queue
      * @param task user object that will be returned via {@link TasksThreadInterface#handleTask} methods
      */
-    public void addTask(Object task) {
+    public final void addTask(Object task) {
         if(terminated) {
             return;
         }
@@ -120,7 +120,7 @@ public class TasksThread extends Thread {
     /**
      * Method used for kill thread and free any resources
      */
-    public void finish() {
+    public final void finish() {
         synchronized (mutex) {
             if (!isAlive()) {
                 try {

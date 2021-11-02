@@ -1,0 +1,9 @@
+digraph "thread.utils" {
+  node [shape="box",style="rounded",fontname="Helvetica",fontsize="14"]
+  edge [fontsize="10",fontname="Helvetica"]
+
+  // Node Definitions:
+  "com.koveloper:thread.utils:jar"[label=<<font point-size="10">com.koveloper</font><br/>thread.utils<font point-size="10"><br/>1.0</font>>]
+
+  // Edge Definitions:
+}
